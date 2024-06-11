@@ -1,11 +1,9 @@
 function Home() {
-    return (
+  return (
     <div>
-        <h1>Hola Emi!</h1>            
+      <h1>Hola Emi!</h1>
     </div>
-);
-   
-    
+  );
 }
 
 export default Home;

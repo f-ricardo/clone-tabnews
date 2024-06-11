@@ -1,2 +1,3 @@
 # clone-tabnews
-Repositório para treinamento 
+
+Repositório para treinamento
