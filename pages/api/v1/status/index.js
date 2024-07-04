@@ -1,4 +1,4 @@
-import database from "../../../../infra/database.js";
+import database from "infra/database.js";
 
 async function status(resquet, response) {
   const result = await database.query("SELECT 1 + 1 as soma;");
