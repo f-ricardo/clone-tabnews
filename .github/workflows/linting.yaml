@@ -48,6 +48,8 @@ jobs:
       - run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
   secretLint:
+    permissions:
+      contents: read
     name: SecretLint
     runs-on: ubuntu-latest
     steps:
@@ -55,7 +57,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v44
+      - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
 
