@@ -60,6 +60,8 @@ jobs:
           node-version: "lts/hydrogen"
 
       - uses: tj-actions/changed-files@v45
+        with:
+          since_last_remote_commit: true
 
       - name: Show changed files
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
