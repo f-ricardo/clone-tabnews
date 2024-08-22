@@ -47,25 +47,21 @@ jobs:
 
       - run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
-  test-diff:
+  secretLint:
     permissions:
       contents: read
-    name: "Run secretlint to diff files"
+    name: SecretLint
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          # fetch history to get all changed files on push or pull_request event
           fetch-depth: 0
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
-
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v45
         with:
           node-version: "lts/hydrogen"
+
+      - uses: tj-actions/changed-files@v44
 
       - name: Show changed files
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
