@@ -46,3 +46,28 @@ jobs:
       - run: npm ci
 
       - run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  secretLint:
+    name: SecretLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/hydrogen"
+
+      - uses: tj-actions/changed-files@v45
+
+      - name: Show changed files
+        run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
+
+      - name: Install
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npm ci
+
+      - name: Run secretlint
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npx secretlint ${{ steps.changed-files.outputs.all_changed_files }}
