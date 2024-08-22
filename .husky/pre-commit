@@ -1,0 +1,7 @@
+exec </dev/tty
+echo "\n*** PRE-COMMIT VALIDATIONS... \n"
+read -p "Do you want to run all unit tests? (y/N)  " runtest
+if [ "$runtest" = 'y' ]; then
+  npm test
+fi
+npm run lint:staged
