@@ -50,18 +50,21 @@ jobs:
   secretLint:
     permissions:
       contents: read
-    name: SecretLint
+    name: "SecretLint"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
 
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
-
-      - uses: tj-actions/changed-files@v44
 
       - name: Show changed files
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
