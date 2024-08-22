@@ -61,7 +61,7 @@ jobs:
         with:
           node-version: "lts/hydrogen"
 
-      - uses: tj-actions/changed-files@v45
+      - uses: tj-actions/changed-files@v44
 
       - name: Show changed files
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
